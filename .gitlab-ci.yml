@@ -6,7 +6,7 @@ build-job:
   stage: build
   image: maven:3.9.6-eclipse-temurin-17
   script:
-    - mvn clean build
+    - mvn clean package
   artifacts:
     paths:
       - target/*.jar
