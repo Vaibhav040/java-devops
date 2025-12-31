@@ -4,7 +4,7 @@ metadata:
   name: java-deployment
   namespace: java-app
 
-specs:
+spec:
   replicas: 2
   selector:
     matchLabels:
