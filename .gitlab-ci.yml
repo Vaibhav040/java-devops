@@ -1,8 +1,9 @@
 
 stages:
   - build
+  - docker
 
-build-job:
+maven-build:
   stage: build
   image: maven:3.9.6-eclipse-temurin-17
   script:
@@ -10,3 +11,11 @@ build-job:
   artifacts:
     paths:
       - target/*.jar
+
+docker-build:
+  stage: docker
+  image: docker:25
+  services:
+    - docker:25-dind
+  script:
+    - docker build -t java-devops:1.0 .
