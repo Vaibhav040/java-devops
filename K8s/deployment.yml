@@ -1,0 +1,21 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: java-deployment
+  namespace: java-app
+
+specs:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: java-app
+  template:
+    metadata:
+      labels:
+        app: java-app
+    spec:
+      containers;
+      - name: java-app
+        image: registry.gitlab.com/vaibhavc54/java-devops:${IMAGE_TAG}
+        ports:
+        - containerPort: 8080
