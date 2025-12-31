@@ -14,8 +14,8 @@ specs:
       labels:
         app: java-app
     spec:
-      containers;
-      - name: java-app
-        image: registry.gitlab.com/vaibhavc54/java-devops:${IMAGE_TAG}
-        ports:
-        - containerPort: 8080
+      containers:
+        - name: java-app
+          image: registry.gitlab.com/vaibhavc54/java-devops:${IMAGE_TAG}
+          ports:
+          - containerPort: 8080
