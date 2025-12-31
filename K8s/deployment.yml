@@ -17,7 +17,7 @@ spec:
       containers:
         - name: java-app
           image: registry.gitlab.com/vaibhavc54/java-devops:${IMAGE_TAG}
-          imagePullSecrets:
-          - name: gitlab-creds
           ports:
           - containerPort: 8080
+        imagePullSecrets:
+          - name: gitlab-creds
