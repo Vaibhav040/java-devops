@@ -34,5 +34,5 @@ deploy:
     - kubectl cluster-info
     - sed -i "s|\${IMAGE_TAG}|$CI_COMMIT_SHORT_SHA|g" K8s/deployment.yml
     - kubectl apply -f K8s/deployment.yml
-    - kubectl rollout status deployment java-deployment
+    - kubectl rollout status deployment java-deployment -n java-app
   when: manual
