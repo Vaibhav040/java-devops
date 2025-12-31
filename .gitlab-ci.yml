@@ -27,7 +27,9 @@ docker-build:
 
 deploy:
   stage: deploy
-  image: bitnami/kubectl
+  image:
+    name: bitnami/kubectl
+    entrypoint: [""]
   script:
     - sed -i "s|\${IMAGE_TAG}|$CI_COMMIT_SHORT_SHA|g" K8s/deployment.yml
     - kubectl apply -f deployment.yml
