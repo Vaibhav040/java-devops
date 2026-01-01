@@ -21,3 +21,19 @@ spec:
           - containerPort: 8080
       imagePullSecrets:
       - name: gitlab-creds
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: java-service
+  namespace: java-app
+spec:
+  selector:
+    app: java-app
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: NodePort 
+
