@@ -3,5 +3,10 @@ package com.vaibhav.app;
 public class Main {
     public static void main (String[] args) {
         System.out.println("Hello from maven + GitLab CI");
+
+        // Keep the alive
+        while(true) {
+            Thread.sleep(10000);
+        }
     }
 }
