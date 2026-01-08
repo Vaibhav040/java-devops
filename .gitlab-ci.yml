@@ -31,6 +31,8 @@ deploy:
     name: bitnami/kubectl
     entrypoint: [""]
   script:
+    - echo "Using kubeconfig at; $KUBECONFIG"
+    - kubectl config get-contexts
     - kubectl cluster-info
     - sed -i "s|\${IMAGE_TAG}|$CI_COMMIT_SHORT_SHA|g" K8s/*.yml
     - kubectl apply -f K8s/
@@ -40,4 +42,6 @@ deploy:
         kubectl rollout undo deployment java-deployment -n java-app
         exit 1
       fi
+  tags:
+    - dev 
   when: manual
