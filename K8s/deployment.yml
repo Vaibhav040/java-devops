@@ -29,23 +29,7 @@ spec:
           image: registry.gitlab.com/vaibhavc54/java-devops:${IMAGE_TAG}
           ports:
           - containerPort: 8080
-
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 10
-            failureThreshold: 3
-
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-            initialDelaySeconds: 30
-            periodSeconds: 10
-            failureThreshold: 3
-
+          
           resources:
             requests:
               cpu: "100m"
