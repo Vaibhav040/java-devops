@@ -29,30 +29,14 @@ spec:
           image: registry.gitlab.com/vaibhavc54/java-devops:${IMAGE_TAG}
           ports:
           - containerPort: 8080
-
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 10
-            failureThreshold: 3
-
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-            initialDelaySeconds: 30
-            periodSeconds: 10
-            failureThreshold: 3
-
+          
           resources:
             requests:
-              cpu: "250m"
-              memory: "512Mi"
+              cpu: "100m"
+              memory: "256Mi"
             limits:
-              cpu: "1"
-              memory: "1Gi"
+              cpu: "500"
+              memory: "512Gi"
 
       imagePullSecrets:
       - name: gitlab-creds
