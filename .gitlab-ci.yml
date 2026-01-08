@@ -41,5 +41,5 @@ deploy:
         exit 1
       fi
   tags:
-    - prod 
+    - dev 
   when: manual
