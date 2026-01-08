@@ -40,4 +40,6 @@ deploy:
         kubectl rollout undo deployment java-deployment -n java-app
         exit 1
       fi
+  tags:
+    - prod 
   when: manual
