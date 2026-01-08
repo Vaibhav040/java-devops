@@ -31,9 +31,8 @@ deploy:
     name: bitnami/kubectl
     entrypoint: [""]
   script:
-    - mkdir -p ~/.kube
-    - echo "$KUBECONFIG_CONTENT" > ~/.kube/config
-    - chmod 600 ~/.kube/config
+    - echo "Using kubeconfig at: $KUBECONFIG"
+    - kubectl config get-contexts
     - kubectl cluster-info
     - sed -i "s|\${IMAGE_TAG}|$CI_COMMIT_SHORT_SHA|g" K8s/*.yml
     - kubectl apply -f K8s/
