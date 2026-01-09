@@ -1,93 +1,85 @@
-# java-devops
+# Java CI/CD Pipeline with Kubernetes
+
+This project demonstrates an end-to-end **DevOps CI/CD workflow** for a simple Java application, covering build automation, containerization, and Kubernetes deployment using GitLab CI/CD.
+
+The setup is designed to be **production-like**, even though it runs on **Minikube inside an AWS EC2 instance**, and focuses on best practices such as Ingress-based access, health checks, and automated rollbacks.
+
+---
+
+## 🚀 Project Overview
+
+- A simple Java application built using **Maven**
+- Automated CI/CD pipeline using **GitLab CI/CD**
+- Containerized application using **Docker**
+- Deployment on **Kubernetes (Minikube running on AWS EC2)**
+- Application exposure via **NGINX Ingress Controller**
+- Safe deployments with **rolling updates and rollback support**
+
+---
+
+## 🛠 Tech Stack
+
+- **Language:** Java  
+- **Build Tool:** Maven  
+- **CI/CD:** GitLab CI/CD  
+- **Containerization:** Docker  
+- **Orchestration:** Kubernetes (Minikube)  
+- **Ingress:** NGINX Ingress Controller  
+- **Cloud:** AWS EC2  
+- **OS:** Linux  
+
+---
+
+## 🔁 CI/CD Pipeline Workflow
+
+The GitLab CI/CD pipeline consists of the following stages:
+
+1. **Build**
+   - Compiles the Java application using Maven
+   - Generates a JAR artifact
+
+2. **Docker Build & Push**
+   - Builds a Docker image using the generated JAR
+   - Tags the image using the Git commit SHA
+   - Pushes the image to **GitLab Container Registry**
+
+3. **Deploy (Manual)**
+   - Updates Kubernetes manifests with the new image tag
+   - Applies manifests to the Kubernetes cluster
+   - Verifies rollout status
+   - Automatically rolls back on failure
+
+---
+
+## ☸ Kubernetes Architecture
 
 
+### Kubernetes Resources Used
+- **Deployment**  
+  - Rolling update strategy
+  - Resource requests and limits
+  - Readiness & liveness probes
+- **Service (ClusterIP)**  
+  - Internal service exposure
+- **Ingress**  
+  - Host-based routing
+  - External access without NodePort
 
-## Getting started
+---
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## 🛠 CI/CD Pipeline Considerations
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-* [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.com/vaibhavC54/java-devops.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-* [Set up project integrations](https://gitlab.com/vaibhavC54/java-devops/-/settings/integrations)
-
-## Collaborate with your team
-
-* [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+- - The **GitLab Runner used for the deploy stage must be running on the same EC2 instance** where Kubernetes (Minikube) and `kubectl` are installed, ensuring direct cluster access.
+- The Kubernetes configuration (`kubeconfig`) is copied to the GitLab Runner user so that CI jobs can authenticate and interact with the cluster using `kubectl`.
+- Make kubernets secret in same namespace as project so it can access secret while pulling the image from GitLab Registry.
+ ## Example commandfor secret
+ - kubectl create secret docker-registry gitlab-creds \
+  --namespace=java-app \
+  --docker-server=registry.gitlab.com \
+  --docker-username="YOUR-USER-NAME" \
+  --docker-password="YOUR-PAT-HERE"
+### Example command used to configure kubeconfig for GitLab Runner:
+```bash
+sudo mkdir -p /home/gitlab-runner/.kube
+sudo cp ~/.kube/config /home/gitlab-runner/.kube/config
+sudo chown -R gitlab-runner:gitlab-runner /home/gitlab-runner/.kube
